@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name=".Home.HomeActivity"></activity>
         <activity android:name=".News.NewsActivity"></activity>
         <activity android:name=".User.UserActivity"></activity>
