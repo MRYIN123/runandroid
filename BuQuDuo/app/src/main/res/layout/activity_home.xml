@@ -1,29 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.example.buquduo.bar.TitleBar
-            android:id="@+id/foundtitlebar"
+            android:id="@+id/hometitlebar"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="0dp"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="64sp"
+            android:layout_height="64dp"
             app:leftIcon="@color/colorffffff"
             android:background="@color/colorffffff"
-            app:title="主页">
+            app:title="主页"
+            app:titleColor="@color/color000000">
     </com.example.buquduo.bar.TitleBar>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/homescroller"
-        android:layout_marginTop="10sp"
-        >
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/home_top" ></include>
+            <include layout="@layout/home_topbottom"></include>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/jinriguanzhu"></ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color000000"
+                    android:text="今日数据"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"></TextView>
+            </LinearLayout>
+
+            <include layout="@layout/home_rundata"></include>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/huodong"></ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color000000"
+                    android:text="热门活动"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"></TextView>
+            </LinearLayout>
+
+            <com.youth.banner.Banner
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/banner"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></View>
+
+        </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

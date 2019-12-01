@@ -16,6 +16,7 @@
         app:title="赚赚">
     </com.example.buquduo.bar.TitleBar>
 
+    <include layout="@layout/zhuanhead"></include>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

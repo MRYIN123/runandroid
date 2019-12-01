@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="200sp"
+    android:background="@color/colorffffff">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorffffff"
+        android:layoutDirection="inherit">
+
+<!--        设置-->
+        <ImageView
+            android:id="@+id/image_head_set"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/jinriguanzhu" />
+
+<!--        消息-->
+        <ImageView
+            android:id="@+id/image_head_msg"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/huodong" />
+
+<!--        头像-->
+        <ImageView
+            android:id="@+id/imageView_head"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/headimg" />
+
+<!--        用户名-->
+        <Button
+            android:id="@+id/textView_name"
+            android:layout_marginLeft="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/colorffffff"
+            android:layout_above="@+id/headmid"
+            android:textColor="@color/color000000"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <View
+            android:id="@+id/headmid"
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"></View>
+
+<!--        邀请码-->
+        <TextView
+            android:layout_below="@+id/headmid"
+            android:id="@+id/textView_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_name"
+            android:textColor="@color/color999999"
+            android:textSize="14sp"
+            android:text="邀请码：222222" />
+
+
+<!--        复制-->
+        <Button
+            android:id="@+id/button_copy"
+            android:padding="1sp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="复制"
+            android:textColor="@color/color999999"
+            android:textSize="14sp"
+            android:layout_toRightOf="@+id/textView_code"
+            android:layout_alignBaseline="@+id/textView_code"
+            android:background="#eeeeee"/>
+
+        <!--        填写邀请码-->
+        <Button
+            android:id="@+id/button_inputcode"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="填写邀请码"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color999999"
+            android:textSize="14sp"
+            android:background="#eeeeee"/>
+
+    </RelativeLayout>
+
+
+<!--当前金币/金额-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/layer_list"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/textView_currentgold"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:text="0.0"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#000000"
+                    android:background="@color/colorffffff"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="当前金币"
+                    android:textAlignment="center"
+                    android:textColor="#999999"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/headbottommid"
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:background="@color/color999999"
+                android:layout_gravity="center"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/textView_rmb"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:text="0.0"
+                    android:background="@color/colorffffff"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#000000"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="金额(元)"
+                    android:textAlignment="center"
+                    android:textColor="#999999"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+</LinearLayout>

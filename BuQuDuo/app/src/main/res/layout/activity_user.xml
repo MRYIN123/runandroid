@@ -4,23 +4,10 @@
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.example.buquduo.bar.TitleBar
-        android:id="@+id/usertitlebar"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="64sp"
-        app:leftIcon="@color/colorffffff"
-        android:background="@color/colorffffff"
-        app:title="我的">
-    </com.example.buquduo.bar.TitleBar>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:background="#ff0000"
-        android:text="我的中心" />
+    <include layout="@layout/userhead"></include>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ListView>
 
 </LinearLayout>
