@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorffffff">
+
+    <ImageView
+        android:id="@+id/imageView_news"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="15dp"
+        android:scaleType="center"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/textView_newstitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/color000000"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/textView_newscontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_alignLeft="@+id/textView_newstitle"
+        android:layout_marginTop="50dp"
+        android:textSize="14sp"
+        android:textColor="@color/color000000"
+        android:maxLines="2"/>
+
+    <TextView
+        android:id="@+id/textView_newslook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_newscontent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/color999999"/>
+
+    <TextView
+        android:id="@+id/textView_newstime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/textView_newslook"
+        android:layout_toRightOf="@+id/textView_newslook"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/color999999"/>
+
+</RelativeLayout>

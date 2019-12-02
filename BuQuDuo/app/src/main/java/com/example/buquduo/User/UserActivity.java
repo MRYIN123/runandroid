@@ -1,13 +1,19 @@
 package com.example.buquduo.User;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.buquduo.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +25,10 @@ public class UserActivity extends Fragment {
 
     View userView;
     ListView listView;
+    View headView;
+    ArrayList<ViewItems> datalist;
+    UserAdapter adapter;
+
 
     @Nullable
     @Override
@@ -28,6 +38,8 @@ public class UserActivity extends Fragment {
         initData();
 
         initView();
+
+        setAdapter();
 
         return userView;
     }
@@ -59,73 +71,83 @@ public class UserActivity extends Fragment {
 
 
     public void initData() {
+        datalist = new ArrayList<ViewItems>();
+        datalist.add(new ViewItems("邀请好友",R.drawable.yaoqing));
+        datalist.add(new ViewItems("个人成就",R.drawable.chengjiu));
+        datalist.add(new ViewItems("步数记录",R.drawable.jilu));
+        datalist.add(new ViewItems("身体数据",R.drawable.shuju));
+        datalist.add(new ViewItems("我的客服",R.drawable.kefu));
+
+        System.out.println("datalist=");
+        for (int i = 0 ; i < datalist.size(); i++) {
+            ViewItems items = datalist.get(i);
+            System.out.println(items.getLeftTitle());
+        }
+
+    }
+
+    public void setAdapter() {
+        adapter = new UserAdapter(this.getActivity(),R.layout.useritem,datalist);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gotonext(position);
+            }
+        });
+
+    }
+
+    public void gotonext(int postion) {
+        ViewItems items = (ViewItems)datalist.get(postion - 1);
+
+        if (items.getLeftTitle() == "邀请好友") {
+            Toast.makeText(this.getContext(),"邀请好友",Toast.LENGTH_SHORT).show();
+
+        }else if (items.getLeftTitle() == "身体数据") {
+            Intent intent = new Intent();
+            intent.setClass(this.getActivity(),HealthActivity.class);
+            this.startActivity(intent);
+
+        }else if (items.getLeftTitle() == "步数记录") {
+            Intent intent = new Intent();
+            intent.setClass(this.getActivity(),RunHistoryActivity.class);
+            this.startActivity(intent);
+
+        }else if (items.getLeftTitle() == "个人成就") {
+            Toast.makeText(this.getContext(),"个人成就",Toast.LENGTH_SHORT).show();
+
+        }else if (items.getLeftTitle() == "我的客服") {
+            Toast.makeText(this.getContext(),"我的客服",Toast.LENGTH_SHORT).show();
+
+        }
 
     }
 
     public void initView() {
+        headView = getLayoutInflater().inflate(R.layout.userhead,null);
+        listView = userView.findViewById(R.id.userlist);
+        listView.addHeaderView(headView);
 
-
-        //点击事件
-        addclick();
+        //add click
+        addheadclick(R.id.textView_name);
+        addheadclick(R.id.button_copy);
+        addheadclick(R.id.button_inputcode);
+        addheadclick(R.id.image_head_msg);
+        addheadclick(R.id.image_head_set);
+        addheadclick(R.id.textView_currentgold);
+        addheadclick(R.id.textView_rmb);
+        addheadclick(R.id.imageView_head);
     }
 
-    public void addclickId(){
-
-
-    }
-
-
-    public void addclick(){
-
-        userView.findViewById(R.id.textView_name).setOnClickListener(new View.OnClickListener() {
+    public void addheadclick(int name){
+        userView.findViewById(name).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 click(v);
             }
         });
-        userView.findViewById(R.id.button_copy).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.button_inputcode).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.image_head_msg).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.image_head_set).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.textView_currentgold).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.textView_rmb).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-        userView.findViewById(R.id.imageView_head).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click(v);
-            }
-        });
-
     }
 
     public void click(View v) {
@@ -156,6 +178,9 @@ public class UserActivity extends Fragment {
                 break;
         }
     }
+
+
+
 
 
 }
