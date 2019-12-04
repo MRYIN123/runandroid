@@ -6,17 +6,20 @@ import android.os.Bundle;
 
 import com.example.buquduo.R;
 
-public class SetActivity extends AppCompatActivity {
+public class GoldInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set);
+        setContentView(R.layout.activity_gold_info);
 
-        initview();
+        initView();
     }
 
-    public void initview() {
+    public void initView() {
 
     }
+
+
+
 }

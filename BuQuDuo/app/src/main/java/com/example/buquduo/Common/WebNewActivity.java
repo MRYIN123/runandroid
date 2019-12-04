@@ -1,11 +1,14 @@
 package com.example.buquduo.Common;
 
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.buquduo.R;
+import com.example.buquduo.User.HealthActivity;
+import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +28,23 @@ public class WebNewActivity extends AppCompatActivity {
     TitleBar titleBar;
     public void settitlebar() {
         titleBar = findViewById(R.id.webtitlebar);
+
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                WebNewActivity.this.finish();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     public void initview() {

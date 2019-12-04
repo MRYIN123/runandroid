@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="64sp"
-        app:leftIcon="@color/color000000"
+        app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:title="网页">
     </com.example.buquduo.bar.TitleBar>

@@ -1,6 +1,7 @@
 package com.example.buquduo.User;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.buquduo.Login.LoginActivity;
 import com.example.buquduo.R;
 
 import java.util.ArrayList;
@@ -119,8 +121,10 @@ public class UserActivity extends Fragment {
             Toast.makeText(this.getContext(),"个人成就",Toast.LENGTH_SHORT).show();
 
         }else if (items.getLeftTitle() == "我的客服") {
-            Toast.makeText(this.getContext(),"我的客服",Toast.LENGTH_SHORT).show();
-
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            Uri data = Uri.parse("tel:" + "17521011606");
+            intent.setData(data);
+            startActivity(intent);
         }
 
     }
@@ -134,7 +138,7 @@ public class UserActivity extends Fragment {
         addheadclick(R.id.textView_name);
         addheadclick(R.id.button_copy);
         addheadclick(R.id.button_inputcode);
-        addheadclick(R.id.image_head_msg);
+//        addheadclick(R.id.image_head_msg);
         addheadclick(R.id.image_head_set);
         addheadclick(R.id.textView_currentgold);
         addheadclick(R.id.textView_rmb);
@@ -152,32 +156,53 @@ public class UserActivity extends Fragment {
 
     public void click(View v) {
         switch (v.getId()) {
+            case R.id.imageView_head:
             case R.id.textView_name:
-                Toast.makeText(this.getContext(),"点击登录",Toast.LENGTH_SHORT).show();
+                gotologin();
                 break;
             case R.id.button_copy:
-                Toast.makeText(this.getContext(),"复制",Toast.LENGTH_SHORT).show();
+                copyaction();
                 break;
             case R.id.button_inputcode:
                 Toast.makeText(this.getContext(),"输入邀请码",Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.image_head_msg:
-                Toast.makeText(this.getContext(),"消息",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.image_head_msg:
+//                Toast.makeText(this.getContext(),"消息",Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.image_head_set:
-                Toast.makeText(this.getContext(),"设置",Toast.LENGTH_SHORT).show();
+                gotoset();
                 break;
             case R.id.textView_currentgold:
-                Toast.makeText(this.getContext(),"当前金币",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.textView_rmb:
-                Toast.makeText(this.getContext(),"金额",Toast.LENGTH_SHORT).show();
+                gotogold();
                 break;
-            case R.id.imageView_head:
-                Toast.makeText(this.getContext(),"头像",Toast.LENGTH_SHORT).show();
-                break;
+                default:break;
         }
     }
+
+    public void copyaction() {
+        Toast.makeText(this.getContext(),"复制",Toast.LENGTH_SHORT).show();
+    }
+
+    public void gotologin() {
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(), LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoset() {
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(),SetActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotogold() {
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(),GoldInfoActivity.class);
+        startActivity(intent);
+    }
+
+
 
 
 

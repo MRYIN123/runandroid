@@ -16,7 +16,6 @@
     <string name="url_base">http://195857z8h0.imwork.net:25535/wb/api/</string>
 
 
-
     <!--其他-->
     <string name="title_activity_set">SetActivity</string>
     <string name="action_settings">Settings</string>
@@ -41,5 +40,14 @@
     <string name="add_item">添加</string>
     <string name="source_on_github">Github位置</string>
     <string name="title_item">功能</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>
