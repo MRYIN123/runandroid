@@ -74,11 +74,11 @@ public class UserActivity extends Fragment {
 
     public void initData() {
         datalist = new ArrayList<ViewItems>();
-        datalist.add(new ViewItems("邀请好友",R.drawable.yaoqing));
-        datalist.add(new ViewItems("个人成就",R.drawable.chengjiu));
-        datalist.add(new ViewItems("步数记录",R.drawable.jilu));
-        datalist.add(new ViewItems("身体数据",R.drawable.shuju));
-        datalist.add(new ViewItems("我的客服",R.drawable.kefu));
+        datalist.add(new ViewItems("邀请好友",R.mipmap.aixin));
+//        datalist.add(new ViewItems("个人成就",R.drawable.chengjiu));
+        datalist.add(new ViewItems("步数记录",R.mipmap.jilu));
+        datalist.add(new ViewItems("身体数据",R.mipmap.jiankangcard));
+        datalist.add(new ViewItems("我的客服",R.mipmap.kefu));
 
         System.out.println("datalist=");
         for (int i = 0 ; i < datalist.size(); i++) {

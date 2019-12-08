@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.example.buquduo.bar.TitleBar
-            android:id="@+id/hometitlebar"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:leftIcon="@color/colorffffff"
-            android:background="@color/colorffffff"
-            app:title="主页"
-            app:titleColor="@color/color000000">
-    </com.example.buquduo.bar.TitleBar>
+
 
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
         android:id="@+id/homescroller"
         android:background="@android:color/white">
 
@@ -44,7 +34,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/jinriguanzhu"></ImageView>
+                    android:src="@mipmap/todaydata"></ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -68,7 +58,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/huodong"></ImageView>
+                    android:src="@mipmap/hot"></ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -96,4 +86,17 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/hometitlebar"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:leftIcon="@color/colorffffff"
+        android:background="@android:color/transparent"
+        app:title="主页"
+        app:titleColor="@color/color000000">
+    </com.example.buquduo.bar.TitleBar>
+
+</RelativeLayout>

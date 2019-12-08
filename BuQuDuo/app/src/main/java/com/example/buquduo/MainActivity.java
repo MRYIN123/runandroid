@@ -169,58 +169,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstlayout.setSelected(true);
 
             firstTextView.setTextColor(this.getResources().getColor(R.color.color_base1));
-            firstImg.setImageResource(R.drawable.paobu);
+            firstImg.setImageResource(R.mipmap.zou1);
 
             secondTextView.setTextColor(Color.GRAY);
-            secondImg.setImageResource(R.drawable.yueduhui);
+            secondImg.setImageResource(R.mipmap.kankan);
 
             thirdTextView.setTextColor(Color.GRAY);
-            thirdImg.setImageResource(R.drawable.zhuanbahui);
+            thirdImg.setImageResource(R.mipmap.zhuanzhuan);
 
             fourTxtView.setTextColor(Color.GRAY);
-            fourImg.setImageResource(R.drawable.wodehui1);
+            fourImg.setImageResource(R.mipmap.wode);
 
         }else if (selectIndex == 1){
             secondlayou.setSelected(true);
             firstTextView.setTextColor(Color.GRAY);
-            firstImg.setImageResource(R.drawable.paobuhui);
+            firstImg.setImageResource(R.mipmap.zouzou);
 
             secondTextView.setTextColor(this.getResources().getColor(R.color.color_base1));
-            secondImg.setImageResource(R.drawable.yuedu);
+            secondImg.setImageResource(R.mipmap.kan);
 
             thirdTextView.setTextColor(Color.GRAY);
-            thirdImg.setImageResource(R.drawable.zhuanbahui);
+            thirdImg.setImageResource(R.mipmap.zhuanzhuan);
 
             fourTxtView.setTextColor(Color.GRAY);
-            fourImg.setImageResource(R.drawable.wodehui1);
+            fourImg.setImageResource(R.mipmap.wode);
 
         }else if (selectIndex == 2){
             thirdlayout.setSelected(true);
             firstTextView.setTextColor(Color.GRAY);
-            firstImg.setImageResource(R.drawable.paobuhui);
+            firstImg.setImageResource(R.mipmap.zouzou);
 
             secondTextView.setTextColor(Color.GRAY);
-            secondImg.setImageResource(R.drawable.yueduhui);
+            secondImg.setImageResource(R.mipmap.kankan);
 
             thirdTextView.setTextColor(this.getResources().getColor(R.color.color_base1));
-            thirdImg.setImageResource(R.drawable.zhuanba);
+            thirdImg.setImageResource(R.mipmap.zhuan1);
 
             fourTxtView.setTextColor(Color.GRAY);
-            fourImg.setImageResource(R.drawable.wodehui1);
+            fourImg.setImageResource(R.mipmap.wode);
 
         }else {
             fourlayout.setSelected(true);
             firstTextView.setTextColor(Color.GRAY);
-            firstImg.setImageResource(R.drawable.paobuhui);
+            firstImg.setImageResource(R.mipmap.zouzou);
 
             secondTextView.setTextColor(Color.GRAY);
-            secondImg.setImageResource(R.drawable.yueduhui);
+            secondImg.setImageResource(R.mipmap.kankan);
 
             thirdTextView.setTextColor(Color.GRAY);
-            thirdImg.setImageResource(R.drawable.zhuanbahui);
+            thirdImg.setImageResource(R.mipmap.zhuanzhuan);
 
             fourTxtView.setTextColor(this.getResources().getColor(R.color.color_base1));
-            fourImg.setImageResource(R.drawable.wode);
+            fourImg.setImageResource(R.mipmap.wo);
 
         }
     }
