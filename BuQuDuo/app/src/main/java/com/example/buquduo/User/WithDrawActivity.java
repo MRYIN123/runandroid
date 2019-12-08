@@ -1,36 +1,39 @@
 package com.example.buquduo.User;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 
 import com.example.buquduo.R;
 import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
 
-import java.util.ArrayList;
+public class WithDrawActivity extends AppCompatActivity {
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class RunHistoryActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_with_draw);
 
-        initView();
+        configTitlebar();
 
-        setback();
+        initview();
+
+        initdata();
+
     }
 
     TitleBar titleBar;
-    public  void  setback() {
-        titleBar = findViewById(R.id.historytitlebar);
+    public void configTitlebar() {
+        titleBar = findViewById(R.id.titlebar_withdraw);
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
-                RunHistoryActivity.this.finish();
+                WithDrawActivity.this.finish();
             }
 
             @Override
@@ -46,13 +49,16 @@ public class RunHistoryActivity extends AppCompatActivity {
     }
 
 
-    ListView listView;
-    ArrayList<ViewItems> datalist;
-    UserAdapter adapter;
-    public void initView() {
-        listView = findViewById(R.id.historylist);
+    public void initview() {
 
     }
+
+    public void initdata() {
+
+    }
+
+
+
 
 
 }

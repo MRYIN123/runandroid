@@ -98,7 +98,6 @@ public class UserActivity extends Fragment {
                 gotonext(position);
             }
         });
-
     }
 
     public void gotonext(int postion) {
@@ -138,7 +137,6 @@ public class UserActivity extends Fragment {
         addheadclick(R.id.textView_name);
         addheadclick(R.id.button_copy);
         addheadclick(R.id.button_inputcode);
-//        addheadclick(R.id.image_head_msg);
         addheadclick(R.id.image_head_set);
         addheadclick(R.id.textView_currentgold);
         addheadclick(R.id.textView_rmb);
@@ -166,15 +164,13 @@ public class UserActivity extends Fragment {
             case R.id.button_inputcode:
                 Toast.makeText(this.getContext(),"输入邀请码",Toast.LENGTH_SHORT).show();
                 break;
-//            case R.id.image_head_msg:
-//                Toast.makeText(this.getContext(),"消息",Toast.LENGTH_SHORT).show();
-//                break;
             case R.id.image_head_set:
                 gotoset();
                 break;
             case R.id.textView_currentgold:
-            case R.id.textView_rmb:
                 gotogold();
+            case R.id.textView_rmb:
+                gotowithdraw();
                 break;
                 default:break;
         }
@@ -198,7 +194,13 @@ public class UserActivity extends Fragment {
 
     public void gotogold() {
         Intent intent = new Intent();
-        intent.setClass(this.getContext(),GoldInfoActivity.class);
+        intent.setClass(this.getContext(),GoldRecordActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotowithdraw() {
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(),WithDrawActivity.class);
         startActivity(intent);
     }
 

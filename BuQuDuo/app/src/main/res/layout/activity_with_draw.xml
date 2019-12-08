@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".User.WithDrawActivity">
+
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/titlebar_withdraw"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        app:leftIcon="@drawable/back_icon"
+        android:background="@color/colorffffff"
+        app:titleSize="18dp"
+        app:title="提现">
+    </com.example.buquduo.bar.TitleBar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        当前金额-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/color0000ff">
+
+        </RelativeLayout>
+
+
+        <!--        当前金额-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/color666666">
+
+        </RelativeLayout>
+
+
+        <!--        当前金额-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorffffff">
+
+        </RelativeLayout>
+
+        <!--        当前金额-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/color0000ff">
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <!--        当前金额-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/color666666">
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

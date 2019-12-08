@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".User.GoldRecordActivity">
+
+
+    <ListView
+        android:id="@+id/list_getrecord"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/titlebar_gorldrecord"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        app:leftIcon="@drawable/back_icon"
+        android:background="@color/colorffffff"
+        app:titleSize="18dp"
+        app:title="我的钱包"
+        app:rightTitle="提现记录"
+        app:rightColor="@color/colorffffff">
+    </com.example.buquduo.bar.TitleBar>
+
+
+
+</LinearLayout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="@color/colorffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/color0000ff">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recordhead_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorffffff">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/recordhead_titlejine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="金币余额">
+            </TextView>
+
+<!--            金币余额-->
+            <TextView
+                android:id="@+id/recordhead_lastcoin"
+                android:layout_below="@+id/recordhead_titlejine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_alignLeft="@+id/recordhead_titlejine"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="0.0">
+            </TextView>
+
+<!--            提现-->
+            <Button
+                android:id="@+id/recordhead_withdrwa"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape"
+                android:textSize="15sp"
+                android:textColor="@color/colorffffff"
+                android:text="提现">
+            </Button>
+        </RelativeLayout>
+
+
+
+<!--        数据-->
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/color666666"
+                    android:layout_marginLeft="10dp"
+                    android:text="今日金币">
+                </TextView>
+
+<!--                今日金币-->
+                <TextView
+                    android:id="@+id/recordhead_todaycoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:text="0.0">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/color666666"
+                    android:layout_marginLeft="10dp"
+                    android:text="累计收益（截止今日）">
+                </TextView>
+
+<!--                累计收益-->
+                <TextView
+                    android:id="@+id/recordhead_allcoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:text="0.0">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f8f8f8">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="10000金币=1元">
+        </TextView>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_below="@+id/recordhead_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:text="--金币明细--">
+    </TextView>
+
+</RelativeLayout>

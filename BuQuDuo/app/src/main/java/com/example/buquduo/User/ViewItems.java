@@ -10,6 +10,10 @@ public class ViewItems {
         this.leftTitle = leftTitle;
     }
 
+    ViewItems(String leftTitle){
+        this.leftTitle = leftTitle;
+    }
+
     public void setLeftImg(int leftImg) {
         this.leftImg = leftImg;
     }

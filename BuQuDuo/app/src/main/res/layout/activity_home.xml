@@ -6,9 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,11 +89,12 @@
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
+        app:lineColor="@android:color/transparent"
         android:layout_height="64dp"
         app:leftIcon="@color/colorffffff"
         android:background="@android:color/transparent"
         app:title="主页"
-        app:titleColor="@color/color000000">
+        app:titleColor="@color/colorffffff">
     </com.example.buquduo.bar.TitleBar>
 
 </RelativeLayout>
