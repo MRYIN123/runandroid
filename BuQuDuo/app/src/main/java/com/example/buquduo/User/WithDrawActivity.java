@@ -12,8 +12,6 @@ import com.example.buquduo.bar.TitleBar;
 public class WithDrawActivity extends AppCompatActivity {
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
