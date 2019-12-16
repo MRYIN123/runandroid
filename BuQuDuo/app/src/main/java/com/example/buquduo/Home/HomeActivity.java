@@ -7,16 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Lib.GlideImageLoader;
+import com.example.buquduo.Network.TheCallBack;
+import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +35,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 public class HomeActivity extends Fragment implements OnBannerListener {
@@ -32,8 +45,8 @@ public class HomeActivity extends Fragment implements OnBannerListener {
     Button stepButton;
     TextView steptxt;
     TextView stepinfoTxt;
+    Banner banner;
 
-    private ArrayList<String> list_path =  new ArrayList<>();
 
     @Nullable
     @Override
@@ -99,13 +112,11 @@ public class HomeActivity extends Fragment implements OnBannerListener {
     }
 
     public void setBannerView() {
-        list_path.clear();
-        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/5.jpg");
-        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/6.jpg");
-        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/4.jpg");
+//        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/5.jpg");
+//        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/6.jpg");
+//        list_path.add("https://www.blocknew.net/img/portfolio/thumbnails/4.jpg");
 
-
-        Banner banner = (Banner) myview.findViewById(R.id.banner);
+        banner = (Banner) myview.findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
@@ -113,8 +124,45 @@ public class HomeActivity extends Fragment implements OnBannerListener {
         banner.setDelayTime(1500);
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.CENTER);
-        banner.setImages(list_path).setOnBannerListener(this).start();
+//        banner.setImages(list_path).setOnBannerListener(this).start();
 
+
+        String url = getResources().getString(R.string.url_base) + "api/Banners";
+        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+            @Override
+            public void success(Call call, Response response) throws IOException {
+
+                ArrayList<String> list_path =  new ArrayList<>();
+                String resString = response.body().string();
+
+                Gson gson = new Gson();
+                ResReturnItem item = gson.fromJson(resString,ResReturnItem.class);
+                ArrayList<BannerItem> list = (ArrayList<BannerItem>)item.data;
+
+                 List<BannerItem> newList = gson.fromJson(gson.toJson(list),new TypeToken<List<BannerItem>>(){}.getType());
+                 for (BannerItem obj:newList){
+                     list_path.add(obj.image_url);
+                 }
+//                Log.e("得到的banner新数组",list_path.toString());
+                setupbanners(list_path);
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.d("banner失败",e.getMessage());
+            }
+        });
+
+    }
+
+    public void setupbanners(final List<String> images) {
+        this.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                List<String> newimg = images;
+                banner.setImages(newimg).setOnBannerListener(HomeActivity.this).start();
+            }
+        });
     }
 
 

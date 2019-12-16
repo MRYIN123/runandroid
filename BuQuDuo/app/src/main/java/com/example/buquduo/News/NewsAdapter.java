@@ -1,6 +1,7 @@
 package com.example.buquduo.News;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.buquduo.R;
+import com.example.buquduo.ZhuanZhuan.ZhuanAdapter;
+import com.example.buquduo.ZhuanZhuan.ZhuanItem;
 
 import java.util.List;
 
@@ -22,43 +25,43 @@ public class NewsAdapter extends ArrayAdapter {
     NewsAdapter(Context context, int index, List<NewsItem>list){
         super(context,index,list);
 
-        resourceId = index;
+        this.resourceId = index;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view;
-        ViewHolder viewHolder;
-        NewsItem item = (NewsItem) getItem(position);
+        NewsViewHolder viewHolder;
+        NewsItem item = (NewsItem)getItem(position);
 
         if (convertView == null) {
-            view = LayoutInflater.from(this.getContext()).inflate(resourceId,parent,false);
-            viewHolder = new ViewHolder();
-            viewHolder.titleTxt = view.findViewById(R.id.textView_newstitle);
-            viewHolder.contentTxt = view.findViewById(R.id.textView_newscontent);
-            viewHolder.coverImg = view.findViewById(R.id.imageView_news);
-            viewHolder.haslookTxt = view.findViewById(R.id.textView_newslook);
-            viewHolder.timeTxt = view.findViewById(R.id.textView_newstime);
+            convertView = LayoutInflater.from(this.getContext()).inflate(resourceId,null);
+
+            viewHolder = new NewsViewHolder();
+            viewHolder.titleTxt = convertView.findViewById(R.id.textView_newstitle);
+            viewHolder.coverImg = convertView.findViewById(R.id.imageView_news);
+            viewHolder.haslookTxt = convertView.findViewById(R.id.textView_newslook);
+            viewHolder.timeTxt = convertView.findViewById(R.id.textView_newstime);
+            convertView.setTag(viewHolder);
 
         }else {
-            view = convertView;
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (NewsViewHolder)convertView.getTag();
         }
 
         //update
-        viewHolder.titleTxt.setText(item.getTitle());
-        viewHolder.contentTxt.setText(item.getContent());
-        viewHolder.timeTxt.setText(item.getTime());
-        viewHolder.haslookTxt.setText("已看：" + item.getHaslook());
-        Glide.with(this.getContext()).load(item.getCover()).placeholder(R.drawable.headimg).into(viewHolder.coverImg);
+        if (viewHolder != null){
+            Log.d("title=",item.getTitle());
+            viewHolder.titleTxt.setText(item.getTitle());
+            viewHolder.timeTxt.setText(item.getPublishDateStr());
+            viewHolder.haslookTxt.setText("" + item.getPosterScreenName());
+            Glide.with(this.getContext()).load(item.getImageUrl()).placeholder(R.drawable.headimg).into(viewHolder.coverImg);
+        }
 
-        return view;
+        return convertView;
     }
 
-    class ViewHolder {
+    class NewsViewHolder {
         TextView titleTxt;
-        TextView contentTxt;
         ImageView coverImg;
         TextView haslookTxt;
         TextView timeTxt;

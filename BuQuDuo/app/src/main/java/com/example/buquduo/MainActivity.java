@@ -228,12 +228,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     class ViewPagetOnPagerChangedLisenter implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            Log.d("","onPageScrooled----------------"+position);
+//            Log.d("","onPageScrooled----------------"+position);
         }
 
         @Override
         public void onPageSelected(int position) {
-            Log.d("","onPageSelected----------------"+position);
+//            Log.d("","onPageSelected----------------"+position);
 
 
             boolean[] state = new boolean[titleName.length];
