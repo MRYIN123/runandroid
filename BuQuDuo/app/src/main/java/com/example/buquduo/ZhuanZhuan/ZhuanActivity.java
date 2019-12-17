@@ -11,14 +11,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 public class ZhuanActivity extends Fragment {
@@ -102,6 +106,20 @@ public class ZhuanActivity extends Fragment {
                 "run","140",true,0));
 
         signItem = new SignItem("100",false);
+
+        String url = getResources().getString(R.string.url_base) + "api/task";
+        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+            @Override
+            public void success(Call call, Response response) throws IOException {
+
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+
+            }
+        });
+
     }
 
     public void setadapter() {

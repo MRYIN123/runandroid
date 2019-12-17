@@ -1,18 +1,28 @@
 package com.example.buquduo.User;
 
 import androidx.appcompat.app.AppCompatActivity;
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.buquduo.Base.MyTool;
+import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
 import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
+import com.google.gson.Gson;
+import com.vector.update_app.UpdateAppManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SetActivity extends AppCompatActivity {
@@ -70,7 +80,6 @@ public class SetActivity extends AppCompatActivity {
         list.add(new ViewItems("检查更新"));
         list.add(new ViewItems("退出登录"));
 
-
     }
 
     public void setAdapter() {
@@ -97,7 +106,7 @@ public class SetActivity extends AppCompatActivity {
             Toast.makeText(this,"清除成功",Toast.LENGTH_SHORT).show();
 
         }else if (items.getLeftTitle() == "检查更新") {
-            Toast.makeText(this,"最新版本",Toast.LENGTH_SHORT).show();
+            checkVersion();
 
         }else {
             Toast.makeText(this,"退出登录",Toast.LENGTH_SHORT).show();
@@ -105,6 +114,72 @@ public class SetActivity extends AppCompatActivity {
         }
     }
 
+
+    private void checkVersion() {
+
+        Toast.makeText(this,"最新版本",Toast.LENGTH_SHORT).show();
+
+        String url = getResources().getString(R.string.url_base) + "api/version/Android";
+        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+            @Override
+            public void success(Call call, Response response) throws IOException {
+                String resS = response.body().string();
+                Gson gson = new Gson();
+
+                ResReturnItem item = gson.fromJson(resS,ResReturnItem.class);
+                VersionItem versionItem = gson.fromJson(gson.toJson(item.data),VersionItem.class);
+
+
+                //检查是否需要更新
+                setupVersionData(versionItem);
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                makeToast(e.getMessage());
+            }
+        });
+
+    }
+
+
+    //检查是否需要更新
+    public void setupVersionData(VersionItem versionItem) {
+        Log.d("version",versionItem.getUpdateDescription());
+
+        String mUpdateUrl = "Android包下载地址url";
+
+        if (MyTool.isNeedUpdate(this,versionItem.getNewVersion())){
+
+            new UpdateAppManager
+                    .Builder()
+                    //当前Activity
+                    .setActivity(this)
+                    //更新地址
+                    .setUpdateUrl(mUpdateUrl)
+                    //实现httpManager接口的对象
+                    .setHttpManager(new MyUpdateUtil())
+                    .build()
+                    .update();
+
+        }else {
+            Toast.makeText(this,"当前是最新版本",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+    }
+
+
+    private void makeToast(String s) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                Toast.makeText(getBaseContext(),s,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
 }

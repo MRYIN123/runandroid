@@ -275,7 +275,6 @@ public class NewsActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { gotonext(position);
             }
         });
-
     }
 
     public void gotonext(int position) {

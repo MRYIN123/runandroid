@@ -76,6 +76,8 @@ public class UserActivity extends Fragment {
         datalist = new ArrayList<ViewItems>();
         datalist.add(new ViewItems("邀请好友",R.mipmap.aixin));
 //        datalist.add(new ViewItems("个人成就",R.drawable.chengjiu));
+        datalist.add(new ViewItems("邀请码",R.drawable.jilu));
+        datalist.add(new ViewItems("绑定账户",R.drawable.jilu));
         datalist.add(new ViewItems("步数记录",R.mipmap.jilu));
         datalist.add(new ViewItems("身体数据",R.mipmap.jiankangcard));
         datalist.add(new ViewItems("我的客服",R.mipmap.kefu));
@@ -123,6 +125,16 @@ public class UserActivity extends Fragment {
             Intent intent = new Intent(Intent.ACTION_CALL);
             Uri data = Uri.parse("tel:" + "17521011606");
             intent.setData(data);
+            startActivity(intent);
+
+        }else if (items.getLeftTitle() == "绑定账户") {
+            Intent intent = new Intent();
+            intent.setClass(this.getContext(),BindAccountActivity.class);
+            this.startActivity(intent);
+
+        }else if (items.getLeftTitle() == "邀请码") {
+            Intent intent = new Intent();
+            intent.setClass(this.getContext(),InvitationCodeActivity.class);
             startActivity(intent);
         }
 

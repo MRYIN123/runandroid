@@ -2,8 +2,13 @@ package com.example.buquduo.Network;
 
 import android.os.Handler;
 import android.util.Log;
+
+import com.vector.update_app.HttpManager;
+
 import java.io.IOException;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -11,12 +16,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class AHttpUtils {
+public class AHttpUtils  {
 
     private static volatile AHttpUtils instance;
     private static final String TAG = "AHttpUtils";
     public static Handler ler = new Handler();
     private AHttpUtils() {}
+
+
+
 
 
     /**
