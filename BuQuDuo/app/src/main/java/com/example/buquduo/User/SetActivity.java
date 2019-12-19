@@ -39,11 +39,13 @@ public class SetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
 
-        initview();
-
         initData();
 
+        initview();
+
         setAdapter();
+
+        setback();
     }
 
 
@@ -70,13 +72,15 @@ public class SetActivity extends AppCompatActivity {
 
     public void initview() {
         listView = findViewById(R.id.setlistview);
-
+        Toast.makeText(this,"设置啦    ",Toast.LENGTH_SHORT).show();
 
     }
 
     public void initData() {
         list = new ArrayList<ViewItems>();
 
+        list.add(new ViewItems("设置支付密码"));
+        list.add(new ViewItems("绑定银行卡"));
         list.add(new ViewItems("关于我们"));
         list.add(new ViewItems("清除缓存"));
         list.add(new ViewItems("检查更新"));
@@ -97,7 +101,8 @@ public class SetActivity extends AppCompatActivity {
     }
 
     private void gotonext(int v){
-        ViewItems items = list.get(v - 1);
+        ViewItems items = list.get(v);
+        Log.d("点击的是===",items.getLeftTitle());
 
         if (items.getLeftTitle() == "关于我们") {
             Intent intent = new Intent();
@@ -110,12 +115,29 @@ public class SetActivity extends AppCompatActivity {
         }else if (items.getLeftTitle() == "检查更新") {
             checkVersion();
 
+        }else if (items.getLeftTitle() == "绑定银行卡") {
+            bindcard();
+
+        }else if (items.getLeftTitle() == "设置支付密码") {
+            setuppwd();
+
         }else {
             Toast.makeText(this,"退出登录",Toast.LENGTH_SHORT).show();
 
         }
     }
 
+    private void bindcard() {
+        Intent intent = new Intent();
+        intent.setClass(this,BindBankActivity.class);
+        startActivity(intent);
+    }
+
+    private void setuppwd() {
+        Intent intent = new Intent();
+        intent.setClass(this,SetPayPwdActivity.class);
+        startActivity(intent);
+    }
 
     private void checkVersion() {
 
@@ -125,7 +147,7 @@ public class SetActivity extends AppCompatActivity {
         OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                makeToast(e.getMessage());
+                MyTool.makeToast(SetActivity.this,e.getMessage());
             }
 
             @Override
@@ -164,19 +186,6 @@ public class SetActivity extends AppCompatActivity {
             Toast.makeText(this,"当前是最新版本",Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-    }
-
-
-    private void makeToast(String s) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-//                Toast.makeText(getBaseContext(),s,Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

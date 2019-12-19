@@ -23,29 +23,33 @@
 
 
     <EditText
+        android:layout_marginTop="30dp"
         android:id="@+id/setpaypwd_pwdtxt"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:textColor="@color/color000000"
         android:textSize="15sp"
-        android:hint="请输入支付密码"
-        android:layout_height="35dp">
+        android:hint="请输入支付密码">
     </EditText>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@color/color_base"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/colorffffff"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/setpaypwd_codetxt"
-            android:layout_width="100dp"
+            android:layout_width="210dp"
             android:textColor="@color/color000000"
             android:textSize="15sp"
             android:hint="请输入验证码"
-            android:layout_height="35dp">
+            android:layout_height="44dp">
         </EditText>
 
         <Button
@@ -53,17 +57,19 @@
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:textSize="14sp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/colorffffff"
-            android:background="@color/color999999"
+            android:background="@color/color0000ff"
             android:text="验证码" />
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/setpaypwd_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/shape"
         android:textColor="@color/colorffffff"
         android:textSize="16dp"

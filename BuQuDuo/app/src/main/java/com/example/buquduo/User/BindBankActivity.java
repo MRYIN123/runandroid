@@ -43,7 +43,7 @@ public class BindBankActivity extends AppCompatActivity {
 
     TitleBar titleBar;
     public void setmyTitleBar(){
-        titleBar = findViewById(R.id.logintitlebar);
+        titleBar = findViewById(R.id.titlebar_bank);
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
@@ -123,7 +123,7 @@ public class BindBankActivity extends AppCompatActivity {
 
     public void selectbank() {
         Intent intent = new Intent();
-        intent.setClass(this,BindBankActivity.class);
+        intent.setClass(this,BankListActivity.class);
         startActivity(intent);
     }
 

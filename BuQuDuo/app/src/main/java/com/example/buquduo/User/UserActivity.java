@@ -76,17 +76,11 @@ public class UserActivity extends Fragment {
         datalist = new ArrayList<ViewItems>();
         datalist.add(new ViewItems("邀请好友",R.mipmap.aixin));
 //        datalist.add(new ViewItems("个人成就",R.drawable.chengjiu));
-        datalist.add(new ViewItems("邀请码",R.drawable.jilu));
-        datalist.add(new ViewItems("绑定账户",R.drawable.jilu));
+        datalist.add(new ViewItems("邀请码",R.mipmap.yaoqingma));
+        datalist.add(new ViewItems("绑定账户",R.mipmap.bangding));
         datalist.add(new ViewItems("步数记录",R.mipmap.jilu));
         datalist.add(new ViewItems("身体数据",R.mipmap.jiankangcard));
-        datalist.add(new ViewItems("我的客服",R.mipmap.kefu));
-
-        System.out.println("datalist=");
-        for (int i = 0 ; i < datalist.size(); i++) {
-            ViewItems items = datalist.get(i);
-            System.out.println(items.getLeftTitle());
-        }
+//        datalist.add(new ViewItems("我的客服",R.mipmap.kefu));
 
     }
 
@@ -147,8 +141,8 @@ public class UserActivity extends Fragment {
 
         //add click
         addheadclick(R.id.textView_name);
-        addheadclick(R.id.button_copy);
-        addheadclick(R.id.button_inputcode);
+//        addheadclick(R.id.button_copy);
+//        addheadclick(R.id.button_inputcode);
         addheadclick(R.id.image_head_set);
         addheadclick(R.id.textView_currentgold);
         addheadclick(R.id.textView_rmb);
@@ -170,12 +164,12 @@ public class UserActivity extends Fragment {
             case R.id.textView_name:
                 gotologin();
                 break;
-            case R.id.button_copy:
-                copyaction();
-                break;
-            case R.id.button_inputcode:
-                Toast.makeText(this.getContext(),"输入邀请码",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.button_copy:
+//                copyaction();
+//                break;
+//            case R.id.button_inputcode:
+//                Toast.makeText(this.getContext(),"输入邀请码",Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.image_head_set:
                 gotoset();
                 break;

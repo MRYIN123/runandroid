@@ -1,26 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <com.example.buquduo.bar.TitleBar
         android:id="@+id/healthtitlebar"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="64sp"
-        app:leftIcon="@drawable/back_icon"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
         android:background="@color/colorffffff"
-        app:titleSize="18dp"
-        app:title="身体数据">
-    </com.example.buquduo.bar.TitleBar>
+        app:leftIcon="@drawable/back_icon"
+        app:title="身体数据"
+        app:titleSize="18dp"></com.example.buquduo.bar.TitleBar>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:text="健康">
-    </TextView>
+        android:text="身体资料"
+        android:textColor="@color/color666666"
+        android:textSize="14sp"></TextView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="身高"
+            android:textColor="@color/color666666"
+            android:textSize="14sp"></TextView>
+
+        <EditText
+            android:id="@+id/health_height"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入身高"
+            android:textColor="@color/color333333"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="体重"
+            android:textColor="@color/color666666"
+            android:textSize="14sp"></TextView>
+
+        <EditText
+            android:id="@+id/health_weight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入体重"
+            android:textColor="@color/color333333"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="年龄"
+            android:textColor="@color/color666666"
+            android:textSize="14sp"></TextView>
+
+        <EditText
+            android:id="@+id/heal_age"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入年龄"
+            android:textColor="@color/color333333"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="性别"
+            android:textColor="@color/color666666"
+            android:textSize="14sp"></TextView>
+
+        <EditText
+            android:id="@+id/healsex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入性别(男或女)"
+            android:textColor="@color/color333333"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="目标步数"
+            android:textColor="@color/color666666"
+            android:textSize="14sp"></TextView>
+
+        <EditText
+            android:id="@+id/heal_step"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="请输入目标步数"
+            android:textColor="@color/color333333"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/heal_confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/shape"
+        android:text="保存"
+        android:textColor="@color/colorffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"></Button>
+
 
 </LinearLayout>

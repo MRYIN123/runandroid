@@ -4,25 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".User.SetActivity">
 
 
     <com.example.buquduo.bar.TitleBar
-    android:id="@+id/titlebar_set"
-    android:layout_marginTop="0dp"
-    android:layout_marginLeft="0dp"
-    android:layout_alignParentTop="true"
-    android:layout_width="match_parent"
-    android:layout_height="64sp"
-    app:leftIcon="@color/colorffffff"
-    android:background="@color/colorffffff"
-    app:titleSize="18dp"
-    app:title="设置">
-</com.example.buquduo.bar.TitleBar>
+        android:id="@+id/titlebar_set"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorffffff"
+        app:leftIcon="@drawable/back_icon"
+        app:title="设置"
+        app:titleSize="18dp"></com.example.buquduo.bar.TitleBar>
 
     <ListView
         android:id="@+id/setlistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:background="@color/colorffffff">
+    </ListView>
+
+
 
 </LinearLayout>

@@ -43,7 +43,7 @@ public class SetPayPwdActivity extends AppCompatActivity {
 
     TitleBar titleBar;
     public void setmyTitleBar(){
-        titleBar = findViewById(R.id.logintitlebar);
+        titleBar = findViewById(R.id.titlebar_setpaypwd);
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {

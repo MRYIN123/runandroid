@@ -16,14 +16,14 @@
         app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:titleSize="18dp"
-        app:title="身体数据">
+        app:title="关于我们">
     </com.example.buquduo.bar.TitleBar>
 
 
     <ImageView
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/baiyuan"
+        android:src="@mipmap/bqd"
         android:layout_width="60dp"
         android:layout_height="60dp">
     </ImageView>

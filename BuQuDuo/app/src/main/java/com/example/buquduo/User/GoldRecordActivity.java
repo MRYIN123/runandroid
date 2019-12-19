@@ -104,7 +104,6 @@ public class GoldRecordActivity extends AppCompatActivity {
                 gotowithdraw();
             }
         });
-
     }
 
     public void gotowithdraw() {
