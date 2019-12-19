@@ -15,6 +15,7 @@ import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Common.WebNewActivity;
 import com.example.buquduo.Home.BannerItem;
 import com.example.buquduo.Network.AHttpUtils;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.TheCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
@@ -29,6 +30,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.gxz.PagerSlidingTabStrip;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -181,22 +183,20 @@ public class NewsActivity extends Fragment {
 
     public void getCategory() {
         String url = getResources().getString(R.string.url_base) + "api/news/category";
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                String resStr = response.body().string();
-                Gson gson = new Gson();
-                ResReturnItem item = gson.fromJson(resStr,ResReturnItem.class);
+            public void onError(Call call, Exception e, int id) {
 
-                ArrayList<NewsItem>list = (ArrayList<NewsItem>)item.data;
-                ArrayList<NewsItem> categorylist1 = gson.fromJson(gson.toJson(list),new TypeToken<ArrayList<NewsItem>>(){}.getType());
-
-                categoryList = categorylist1;
             }
 
             @Override
-            public void failed(Call call, IOException e) {
+            public void onResponse(Object response, int id) {
+                Gson gson = new Gson();
 
+                ArrayList<NewsItem>list = (ArrayList<NewsItem>)((ResReturnItem)response).data;
+                ArrayList<NewsItem> categorylist1 = gson.fromJson(gson.toJson(list),new TypeToken<ArrayList<NewsItem>>(){}.getType());
+
+                categoryList = categorylist1;
             }
         });
     }
@@ -214,29 +214,21 @@ public class NewsActivity extends Fragment {
 
         String url = getResources().getString(R.string.url_base) + "api/news" + "?page=" + offset + "&category=" + category;
 
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                String resStr = response.body().string();
-//                Log.d("返回的newstring----=",resStr);
+            public void onError(Call call, Exception e, int id) {
+                Log.d("news打印","new错误");
+                makeToast(e.getMessage());
+            }
 
+            @Override
+            public void onResponse(Object response, int id) {
                 Gson gson = new Gson();
-                ResReturnItem item = gson.fromJson(resStr,ResReturnItem.class);
-                Log.d("返回的newsdebug=","解析啦");
-
-                ArrayList<NewsItem> list = (ArrayList<NewsItem>)item.data;
-                Log.d("返回的news=",list.toString());
-
+                ArrayList<NewsItem> list = (ArrayList<NewsItem>)((ResReturnItem)response).data;
 
                 ArrayList<NewsItem> newList = gson.fromJson(gson.toJson(list),new TypeToken<ArrayList<NewsItem>>(){}.getType());
                 datalist.addAll(newList);
                 reloadData();
-            }
-
-            @Override
-            public void failed(Call call, IOException e) {
-                Log.d("news打印","new错误");
-                makeToast(e.getMessage());
             }
         });
 

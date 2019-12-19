@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".User.SetPayPwdActivity">
+
+
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/titlebar_setpaypwd"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        app:leftIcon="@drawable/back_icon"
+        android:background="@color/colorffffff"
+        app:titleSize="18dp"
+        app:title="支付密码">
+    </com.example.buquduo.bar.TitleBar>
+
+
+    <EditText
+        android:id="@+id/setpaypwd_pwdtxt"
+        android:layout_width="100dp"
+        android:textColor="@color/color000000"
+        android:textSize="15sp"
+        android:hint="请输入支付密码"
+        android:layout_height="35dp">
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/color_base"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/setpaypwd_codetxt"
+            android:layout_width="100dp"
+            android:textColor="@color/color000000"
+            android:textSize="15sp"
+            android:hint="请输入验证码"
+            android:layout_height="35dp">
+        </EditText>
+
+        <Button
+            android:id="@+id/setpwd_send"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorffffff"
+            android:background="@color/color999999"
+            android:text="验证码" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/setpaypwd_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/shape"
+        android:textColor="@color/colorffffff"
+        android:textSize="16dp"
+        android:text="确定" />
+
+
+</LinearLayout>

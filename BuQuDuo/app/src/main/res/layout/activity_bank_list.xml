@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.BankListActivity">
+
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/titlebar_banklist"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        app:leftIcon="@drawable/back_icon"
+        android:background="@color/colorffffff"
+        app:titleSize="18dp"
+        app:title="银行列表">
+    </com.example.buquduo.bar.TitleBar>
+
+    <ListView
+        android:id="@+id/banklistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+
+</LinearLayout>

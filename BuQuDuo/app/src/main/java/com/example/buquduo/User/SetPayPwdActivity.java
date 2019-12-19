@@ -1,6 +1,8 @@
-package com.example.buquduo.Login;
+package com.example.buquduo.User;
 
-import android.content.SharedPreferences;
+import androidx.appcompat.app.AppCompatActivity;
+import okhttp3.Call;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -11,34 +13,28 @@ import android.widget.Toast;
 
 import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Login.Customer;
+import com.example.buquduo.Login.LoginActivity;
 import com.example.buquduo.Network.BQDHttpTool;
 import com.example.buquduo.Network.MyBaseCallBack;
-import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
 import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
-import java.io.IOException;
-
-import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.Call;
-import okhttp3.Response;
-
-
-public class LoginActivity extends AppCompatActivity {
+public class SetPayPwdActivity extends AppCompatActivity {
 
     Button sendcodeBtn;
     Button loginBtn;
-    EditText phoneTxt;
+    EditText pwdTxt;
     EditText codeTxt;
     CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_set_pay_pwd);
 
         initview();
 
@@ -51,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
-                LoginActivity.this.finish();
+                SetPayPwdActivity.this.finish();
             }
 
             @Override
@@ -68,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void initview() {
-        loginBtn = findViewById(R.id.login_btn);
-        sendcodeBtn = findViewById(R.id.login_send);
-        codeTxt = findViewById(R.id.login_codetxt);
-        phoneTxt = findViewById(R.id.login_phonetxt);
+        loginBtn = findViewById(R.id.setpaypwd_btn);
+        sendcodeBtn = findViewById(R.id.setpaypwd_btn);
+        codeTxt = findViewById(R.id.setpaypwd_codetxt);
+        pwdTxt = findViewById(R.id.setpaypwd_pwdtxt);
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -121,14 +117,13 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.login_send:
                 gotosend();
                 break;
-                default:break;
+            default:break;
         }
     }
 
     public void gotologoin() {
-        Toast.makeText(this,"登录",Toast.LENGTH_SHORT).show();
-        if (phoneTxt.getText() == null || phoneTxt.getText().length() != 11){
-            Toast.makeText(this,"请输入正确手机号",Toast.LENGTH_SHORT).show();
+        if (pwdTxt.getText() == null || pwdTxt.getText().length() != 6){
+            Toast.makeText(this,"请输入6位支付密码",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -138,11 +133,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        String url = getResources().getString(R.string.url_base) + "api/user/login" + phoneTxt.getText();
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url = getResources().getString(R.string.url_base) + "api/user/setPayPassword" + pwdTxt.getText();
+        OkHttpUtils.post().url(url).addParams("pay_password",pwdTxt.getText().toString()).addParams("code",codeTxt.getText().toString()).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                MyTool.makeToast(LoginActivity.this,e.getMessage());
+                MyTool.makeToast(SetPayPwdActivity.this,e.getMessage());
             }
 
             @Override
@@ -152,64 +147,27 @@ public class LoginActivity extends AppCompatActivity {
                 Customer customer = gson.fromJson(gson.toJson(((ResReturnItem)response).data),Customer.class);
                 Log.d("login登录之后","getToken_type" + customer.getToken_type() + "token=" + customer.getAccess_token());
 
-                //保存到本地
-                BQDHttpTool.getShareInstance().setAccess_token(customer.getAccess_token());
-                BQDHttpTool.getShareInstance().setToken_type(customer.getToken_type());
 
-                //个人数据
-                getUserInfo();
+                SetPayPwdActivity.this.finish();
+
             }
         });
     }
 
-    public void getUserInfo() {
-        String url = getResources().getString(R.string.url_base) +  "api/user/getUserInfo";
-        OkHttpUtils.get()
-                .url(url)
-                .headers(BQDHttpTool.getShareInstance().header())
-                .build()
-                .execute(new MyBaseCallBack() {
-
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                MyTool.makeToast(LoginActivity.this,e.getMessage());
-
-            }
-
-            @Override
-            public void onResponse(Object response, int id) {
-                Gson gson = new Gson();
-
-                Customer customer = gson.fromJson(gson.toJson(((ResReturnItem)response).data),Customer.class);
-
-                //存储
-                Customer.saveCustomer(LoginActivity.this,customer);
-
-                //结束跳转
-                LoginActivity.this.finish();
-            }
-        });
-    }
 
     public void gotosend() {
-        Toast.makeText(this,"发送验证码",Toast.LENGTH_SHORT).show();
-        if (phoneTxt.getText() == null || phoneTxt.getText().length() != 11){
-            Toast.makeText(this,"请输入正确手机号",Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-
-        String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + phoneTxt.getText();
+        String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + pwdTxt.getText();
         OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                MyTool.makeToast(LoginActivity.this,e.getMessage());
+                MyTool.makeToast(SetPayPwdActivity.this,e.getMessage());
 
             }
 
             @Override
             public void onResponse(Object response, int id) {
-                MyTool.makeToast(LoginActivity.this,"发送验证码成功");
+                MyTool.makeToast(SetPayPwdActivity.this,"发送验证码成功");
 
 
                 timer.start();
@@ -220,5 +178,6 @@ public class LoginActivity extends AppCompatActivity {
 
         timer.start();
     }
+
 
 }

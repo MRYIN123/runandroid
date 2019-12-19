@@ -11,8 +11,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buquduo.Base.MyTool;
+import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,43 +90,108 @@ public class ZhuanActivity extends Fragment {
         });
     }
 
-    public void gotosign() {
-        Toast.makeText(this.getActivity(),"签到",Toast.LENGTH_SHORT).show();
-        signItem.hasSign = true;
-        updateHeadUI();
-    }
 
+    /**
+     * //        list.add(new ZhuanItem("完成运动","运动越多，成就越多","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "run","100",false,0));
+     * //        list.add(new ZhuanItem("看视频奖励","精彩视频不断","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "vedio","200",true,0));
+     * //        list.add(new ZhuanItem("分享APP","运动越多，成就越多","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "run","100",true,0));
+     * //        list.add(new ZhuanItem("邀请好友","邀请好友奖励","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "run","520",false,0));
+     * //        list.add(new ZhuanItem("看新闻给积分","海量新闻，积分狂送","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "run","70",true,3));
+     * //        list.add(new ZhuanItem("完成个人资料","设置个人资料","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
+     * //                "run","140",true,0));
+     *
+     * //        signItem = new SignItem("100",false);
+     * */
     public void initData() {
         list = new ArrayList<ZhuanItem>();
-        list.add(new ZhuanItem("完成运动","运动越多，成就越多","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "run","100",false,0));
-        list.add(new ZhuanItem("看视频奖励","精彩视频不断","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "vedio","200",true,0));
-        list.add(new ZhuanItem("分享APP","运动越多，成就越多","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "run","100",true,0));
-        list.add(new ZhuanItem("邀请好友","邀请好友奖励","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "run","520",false,0));
-        list.add(new ZhuanItem("看新闻给积分","海量新闻，积分狂送","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "run","70",true,3));
-        list.add(new ZhuanItem("完成个人资料","设置个人资料","https://www.blocknew.net/img/portfolio/thumbnails/2.jpg",
-                "run","140",true,0));
+        signItem = new SignItem("0",false);
 
-        signItem = new SignItem("100",false);
+        //请求数据检查是否签到
+        getSignStatus(true);
 
+        getTaskList();
+    }
+
+    private void getTaskList(){
         String url = getResources().getString(R.string.url_base) + "api/task";
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());
             }
 
             @Override
-            public void failed(Call call, IOException e) {
+            public void onResponse(Object response, int id) {
+                Gson gson = new Gson();
 
+                //new TypeToken<ArrayList<NewsItem>>(){}.getType()
+                ArrayList<ZhuanItem>thelist = gson.fromJson(gson.toJson(((ResReturnItem)response).data),
+                        new TypeToken<ArrayList<ZhuanItem>>(){}.getType());
+
+                list.clear();
+                list.addAll(thelist);
+
+                reloadData();
             }
         });
+    }
+
+    private void getSignStatus(final Boolean firstCheck) {
+        String url = getResources().getString(R.string.url_base) + "api/checkIn";
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Object response, int id) {
+                Gson gson = new Gson();
+
+                //更新签到
+                SignItem item = gson.fromJson(gson.toJson(((ResReturnItem)response).data),SignItem.class);
+                signItem = item;
+
+                if (firstCheck == false ){
+                    MyTool.makeToast(ZhuanActivity.this.getActivity(),"签到成功");
+                    signItem.hasSign = true;
+                    updateHeadUI();
+                }
+            }
+        });
+    }
+
+    public void gotosign() {
+        checkIn();
 
     }
+    private void checkIn() {
+        String url = getResources().getString(R.string.url_base) + "api/event/checkIn";
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Object response, int id) {
+
+                //请求签到状态
+                getSignStatus(false);
+            }
+        });
+    }
+
+
+    private void reloadData() {
+        adapter.notifyDataSetChanged();
+    }
+
 
     public void setadapter() {
         adapter = new ZhuanAdapter(this.getActivity(),R.layout.zhuan_item,list);

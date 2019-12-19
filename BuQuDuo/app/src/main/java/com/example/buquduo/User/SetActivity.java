@@ -15,12 +15,14 @@ import android.widget.Toast;
 
 import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
 import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
 import com.google.gson.Gson;
 import com.vector.update_app.UpdateAppManager;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -120,23 +122,19 @@ public class SetActivity extends AppCompatActivity {
         Toast.makeText(this,"最新版本",Toast.LENGTH_SHORT).show();
 
         String url = getResources().getString(R.string.url_base) + "api/version/Android";
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                String resS = response.body().string();
-                Gson gson = new Gson();
-
-                ResReturnItem item = gson.fromJson(resS,ResReturnItem.class);
-                VersionItem versionItem = gson.fromJson(gson.toJson(item.data),VersionItem.class);
-
-
-                //检查是否需要更新
-                setupVersionData(versionItem);
+            public void onError(Call call, Exception e, int id) {
+                makeToast(e.getMessage());
             }
 
             @Override
-            public void failed(Call call, IOException e) {
-                makeToast(e.getMessage());
+            public void onResponse(Object response, int id) {
+                Gson gson = new Gson();
+                VersionItem versionItem = gson.fromJson(gson.toJson(((ResReturnItem)response).data),VersionItem.class);
+
+                //检查是否需要更新
+                setupVersionData(versionItem);
             }
         });
 

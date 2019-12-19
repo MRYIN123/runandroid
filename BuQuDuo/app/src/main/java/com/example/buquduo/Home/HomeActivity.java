@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Lib.GlideImageLoader;
+import com.example.buquduo.Network.BQDHttpTool;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.TheCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
@@ -26,6 +28,8 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,9 +62,9 @@ public class HomeActivity extends Fragment implements OnBannerListener {
 
         setBannerView();
 
-        initData();
-
-        updatedata();
+//        initData();
+//
+//        updatedata();
 
         return myview;
     }
@@ -128,30 +132,29 @@ public class HomeActivity extends Fragment implements OnBannerListener {
 
 
         String url = getResources().getString(R.string.url_base) + "api/Banners";
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
+            public void onError(Call call, Exception e, int id) {
+                Log.d("banner失败",e.getMessage());
+            }
 
-                ArrayList<String> list_path =  new ArrayList<>();
-                String resString = response.body().string();
+            @Override
+            public void onResponse(Object response, int id) {
 
                 Gson gson = new Gson();
-                ResReturnItem item = gson.fromJson(resString,ResReturnItem.class);
-                ArrayList<BannerItem> list = (ArrayList<BannerItem>)item.data;
+                ArrayList<BannerItem> list = (ArrayList<BannerItem>)((ResReturnItem)response).data;
+                List<BannerItem> newList = gson.fromJson(gson.toJson(list),new TypeToken<List<BannerItem>>(){}.getType());
 
-                 List<BannerItem> newList = gson.fromJson(gson.toJson(list),new TypeToken<List<BannerItem>>(){}.getType());
-                 for (BannerItem obj:newList){
-                     list_path.add(obj.image_url);
-                 }
+                //整合数据
+                ArrayList<String> list_path =  new ArrayList<>();
+                for (BannerItem obj:newList){
+                    list_path.add(obj.image_url);
+                }
 //                Log.e("得到的banner新数组",list_path.toString());
                 setupbanners(list_path);
             }
-
-            @Override
-            public void failed(Call call, IOException e) {
-                Log.d("banner失败",e.getMessage());
-            }
         });
+
 
     }
 

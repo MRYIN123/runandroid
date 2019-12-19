@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.Call;
 import okhttp3.Response;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -15,13 +16,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Login.Customer;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
 import com.example.buquduo.bar.OnTitleBarListener;
 import com.example.buquduo.bar.TitleBar;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -167,20 +172,21 @@ public class BindAccountActivity extends AppCompatActivity {
 
         //验证码发送
         String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + phoneTxt.getText();
-        WBHttpUtils.getShareInstance().getDataAsyn(url, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                makeToast("验证码已发送");
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(BindAccountActivity.this,e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Object response, int id) {
+                MyTool.makeToast(BindAccountActivity.this,"验证码已发送");
 
                 timer.start();
                 setupCodeUI(false,60000);
             }
-
-            @Override
-            public void failed(Call call, IOException e) {
-                makeToast(e.getMessage());
-            }
         });
+
 
     }
 
@@ -229,21 +235,17 @@ public class BindAccountActivity extends AppCompatActivity {
         params.put("code",codeTxt.getText().toString());
 
 
-        WBHttpUtils.getShareInstance().postDataAsyn(url,params, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.post().url(url).
+                addParams("phone",phoneTxt.getText().toString()).
+                addParams("code",codeTxt.getText().toString()).build().execute(new BitmapCallback() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                String resStr = response.body().string();
-                Gson gson = new Gson();
-                ResReturnItem resReturnItem = gson.fromJson(resStr,ResReturnItem.class);
-                Log.d("绑定手机返回===",resStr);
-
-
-                finishActivity();
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(BindAccountActivity.this,e.getMessage());
             }
 
             @Override
-            public void failed(Call call, IOException e) {
-                makeToast(e.getMessage());
+            public void onResponse(Bitmap response, int id) {
+                finishActivity();
             }
         });
     }
@@ -253,14 +255,6 @@ public class BindAccountActivity extends AppCompatActivity {
         BindAccountActivity.this.finish();
     }
 
-    public void makeToast(final String txt){
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getBaseContext(),txt,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void bindWx() {
         String url = getResources().getString(R.string.url_base) + "api/user/bookbindingWechat";
@@ -268,23 +262,20 @@ public class BindAccountActivity extends AppCompatActivity {
         String code = "微信登录返回的code";
         hashMap.put("code",code);
 
-        WBHttpUtils.getShareInstance().postDataAsyn(url,hashMap, new WBHttpUtils.WBNetCall() {
+        OkHttpUtils.post().url(url)
+                .addParams("code",code)
+                .build().execute(new MyBaseCallBack() {
             @Override
-            public void success(Call call, Response response) throws IOException {
-                String resStr = response.body().string();
-                Gson gson = new Gson();
-                ResReturnItem resReturnItem = gson.fromJson(resStr,ResReturnItem.class);
-                Log.d("绑定微信返回===",resStr);
-
-                finishActivity();
-
+            public void onError(Call call, Exception e, int id) {
+                MyTool.makeToast(BindAccountActivity.this,e.getMessage());
             }
 
             @Override
-            public void failed(Call call, IOException e) {
-                makeToast(e.getMessage());
+            public void onResponse(Object response, int id) {
+                finishActivity();
             }
         });
+
     }
 
 

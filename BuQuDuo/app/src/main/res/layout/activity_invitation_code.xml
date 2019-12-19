@@ -1,9 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".User.InvitationCodeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.example.buquduo.bar.TitleBar
+        android:id="@+id/titlebar_invitation"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        app:leftIcon="@drawable/back_icon"
+        android:background="@color/colorffffff"
+        app:titleSize="18dp"
+        app:title="邀请码">
+    </com.example.buquduo.bar.TitleBar>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用说明：您可以分享邀请码得到积分，也可以帮助别人得到积分">
+    </TextView>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color000000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="我的邀请码">
+    </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/invitationcodeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxx">
+        </TextView>
+
+        <Button
+            android:id="@+id/copycodebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorffffff"
+            android:background="@drawable/shape"
+            android:text="复制">
+        </Button>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color000000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="输入他人的邀请码">
+    </TextView>
+
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:id="@+id/invi_inputTxt"
+            android:layout_marginLeft="40dp"
+            android:width="150dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="36sp"
+            android:hint="请输入邀请码">
+        </EditText>
+
+        <Button
+            android:id="@+id/pastecodebtn"
+            android:layout_toRightOf="@+id/invi_inputTxt"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorffffff"
+            android:background="@drawable/shape"
+            android:text="粘贴">
+        </Button>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/invicode_ensurebtn"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:textColor="@color/colorffffff"
+        android:background="@drawable/shape"
+        android:text="确定">
+    </Button>
+
+
+
+</LinearLayout>

@@ -46,5 +46,7 @@ dependencies {
 
     implementation 'com.qianwen:update-app:3.5.2'//版本更新
 
+    implementation 'com.zhy:okhttputils:2.6.2'
+
 
 }
