@@ -27,12 +27,13 @@ public class BankListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bank_list);
 
 
-
         initview();
 
         initData();
 
         setAdapter();
+
+        setback();
     }
 
 
