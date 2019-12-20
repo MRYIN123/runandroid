@@ -131,11 +131,11 @@ public class HomeActivity extends Fragment implements OnBannerListener {
 //        banner.setImages(list_path).setOnBannerListener(this).start();
 
 
-        String url = getResources().getString(R.string.url_base) + "api/Banners";
+        String url = "api/Banners";
         BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.d("banner失败",e.getMessage());
+//                Log.d("banner失败",e.getMessage());
             }
 
             @Override
@@ -154,8 +154,6 @@ public class HomeActivity extends Fragment implements OnBannerListener {
                 setupbanners(list_path);
             }
         });
-
-
     }
 
     public void setupbanners(final List<String> images) {

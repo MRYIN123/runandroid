@@ -126,7 +126,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void gotologoin() {
-        Toast.makeText(this,"登录",Toast.LENGTH_SHORT).show();
         if (phoneTxt.getText() == null || phoneTxt.getText().length() != 11){
             Toast.makeText(this,"请输入正确手机号",Toast.LENGTH_SHORT).show();
             return;
@@ -138,8 +137,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        String url = getResources().getString(R.string.url_base) + "api/user/login" + phoneTxt.getText();
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url = "api/user/login" + phoneTxt.getText();
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(LoginActivity.this,e.getMessage());
@@ -160,20 +159,15 @@ public class LoginActivity extends AppCompatActivity {
                 getUserInfo();
             }
         });
+
     }
 
     public void getUserInfo() {
-        String url = getResources().getString(R.string.url_base) +  "api/user/getUserInfo";
-        OkHttpUtils.get()
-                .url(url)
-                .headers(BQDHttpTool.getShareInstance().header())
-                .build()
-                .execute(new MyBaseCallBack() {
-
+        String url =  "api/user/getUserInfo";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(LoginActivity.this,e.getMessage());
-
             }
 
             @Override
@@ -189,6 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
             }
         });
+
     }
 
     public void gotosend() {
@@ -199,12 +194,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + phoneTxt.getText();
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/SendMessage/" + phoneTxt.getText();
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(LoginActivity.this,e.getMessage());
-
             }
 
             @Override

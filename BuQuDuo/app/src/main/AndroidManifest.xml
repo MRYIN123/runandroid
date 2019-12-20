@@ -25,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".User.BindBankActivity"></activity>
+        <activity android:name=".Login.LoginFirstActivity"></activity>
+        <activity android:name=".User.BindBankActivity" />
         <activity android:name=".User.SetPayPwdActivity" />
         <activity android:name=".User.BankListActivity" />
         <activity android:name=".User.WithDrawConfirmActivity" />

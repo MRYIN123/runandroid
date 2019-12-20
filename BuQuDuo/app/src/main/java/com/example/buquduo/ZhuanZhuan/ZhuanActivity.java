@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Network.BQDHttpTool;
 import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
@@ -118,8 +119,8 @@ public class ZhuanActivity extends Fragment {
     }
 
     private void getTaskList(){
-        String url = getResources().getString(R.string.url_base) + "api/task";
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/task";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());
@@ -142,8 +143,8 @@ public class ZhuanActivity extends Fragment {
     }
 
     private void getSignStatus(final Boolean firstCheck) {
-        String url = getResources().getString(R.string.url_base) + "api/checkIn";
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/checkIn";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());
@@ -164,6 +165,7 @@ public class ZhuanActivity extends Fragment {
                 }
             }
         });
+
     }
 
     public void gotosign() {
@@ -171,8 +173,8 @@ public class ZhuanActivity extends Fragment {
 
     }
     private void checkIn() {
-        String url = getResources().getString(R.string.url_base) + "api/event/checkIn";
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url = "api/event/checkIn";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(ZhuanActivity.this.getActivity(),e.getMessage());

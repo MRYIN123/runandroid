@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.buquduo.Login.LoginActivity;
+import com.example.buquduo.Login.LoginFirstActivity;
 import com.example.buquduo.R;
 
 import java.util.ArrayList;
@@ -188,7 +189,7 @@ public class UserActivity extends Fragment {
 
     public void gotologin() {
         Intent intent = new Intent();
-        intent.setClass(this.getContext(), LoginActivity.class);
+        intent.setClass(this.getContext(), LoginFirstActivity.class);
         startActivity(intent);
     }
 

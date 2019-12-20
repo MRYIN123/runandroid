@@ -71,11 +71,16 @@ public class MyTool {
      * */
     public static void makeToast(final Activity activity, final String msg){
 
+        if (TextUtils.isEmpty(msg)) {
+            Toast.makeText(activity,"未知错误",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         activity.runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
-                Toast.makeText(activity,msg,Toast.LENGTH_SHORT).show();
+             Toast.makeText(activity,msg,Toast.LENGTH_SHORT).show();
             }
         });
     }

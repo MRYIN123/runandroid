@@ -13,6 +13,7 @@
         app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:title="登录"
+        app:titleSize="18sp"
         app:titleColor="@color/color000000">
     </com.example.buquduo.bar.TitleBar>
 
@@ -22,56 +23,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/login_phonetxt"
                 android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="100dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="130dp"
+                android:paddingLeft="5dp"
                 android:textColor="@color/color000000"
                 android:textSize="15sp"
-                android:background="@color/colorff0000"
-                android:hint="请输入手机号"
-                android:layout_height="50dp">
+                android:hint="请输入手机号">
+
             </EditText>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/color_base"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/login_codetxt"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
                     android:textColor="@color/color000000"
-                    android:textSize="15sp"
-                    android:hint="请输入验证码"
-                    android:layout_height="35dp">
+                    android:textSize="16sp"
+                    android:paddingLeft="5dp"
+                    android:hint="请输入验证码">
                 </EditText>
 
                 <Button
                     android:id="@+id/login_send"
                     android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorffffff"
-                    android:background="@color/color999999"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/color0000ff"
+                    android:background="@color/colorffffff"
                     android:text="验证码" />
-            </LinearLayout>
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/color0000ff"
+                android:background="@drawable/shape"
                 android:textColor="@color/colorffffff"
                 android:textSize="16dp"
                 android:text="确定" />

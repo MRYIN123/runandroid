@@ -71,6 +71,7 @@ public class BQDHttpTool {
     }
 
     public void get(String url, final MyBaseCallBack callBack){
+
         OkHttpUtils.get().url(getComplateUrl(url)).headers(header()).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {

@@ -99,7 +99,7 @@ public class BindBankActivity extends AppCompatActivity {
         String bank_id = selectItem.id;
 
 
-        String url = getResources().getString(R.string.url_base) + "api/user/bank";
+        String url = "api/user/bank";
         OkHttpUtils.post().url(url).addParams("bank_id",bank_id).addParams("cardNo",cardNoTxt.getText().toString()).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {

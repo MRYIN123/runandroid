@@ -38,9 +38,9 @@
             android:id="@+id/imageView_head"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/headimg" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/nan" />
 
 <!--        用户名-->
         <Button
@@ -107,7 +107,7 @@
 <!--当前金币/金额-->
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/layer_list"
@@ -123,6 +123,7 @@
                     android:id="@+id/textView_currentgold"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="0.0"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_gravity="center_horizontal"
@@ -158,6 +159,7 @@
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:text="0.0"
+                    android:layout_marginTop="10dp"
                     android:background="@color/colorffffff"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#000000"

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
+import com.example.buquduo.Network.BQDHttpTool;
 import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
@@ -72,7 +73,6 @@ public class SetActivity extends AppCompatActivity {
 
     public void initview() {
         listView = findViewById(R.id.setlistview);
-        Toast.makeText(this,"设置啦    ",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -141,10 +141,8 @@ public class SetActivity extends AppCompatActivity {
 
     private void checkVersion() {
 
-        Toast.makeText(this,"最新版本",Toast.LENGTH_SHORT).show();
-
-        String url = getResources().getString(R.string.url_base) + "api/version/Android";
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/version/Android";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(SetActivity.this,e.getMessage());

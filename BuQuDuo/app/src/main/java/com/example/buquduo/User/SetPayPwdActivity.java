@@ -5,6 +5,7 @@ import okhttp3.Call;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -133,7 +134,7 @@ public class SetPayPwdActivity extends AppCompatActivity {
         }
 
 
-        String url = getResources().getString(R.string.url_base) + "api/user/setPayPassword" + pwdTxt.getText();
+        String url = "api/user/setPayPassword" + pwdTxt.getText();
         OkHttpUtils.post().url(url).addParams("pay_password",pwdTxt.getText().toString()).addParams("code",codeTxt.getText().toString()).build().execute(new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -156,9 +157,14 @@ public class SetPayPwdActivity extends AppCompatActivity {
 
 
     public void gotosend() {
+        Customer customer = Customer.getCustomer(this);
+        if (TextUtils.isEmpty(customer.getPhone())){
+            MyTool.makeToast(this,"电话号码为空");
+            return;
+        }
 
-        String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + pwdTxt.getText();
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url = "api/SendMessage/" + customer.getPhone();
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(SetPayPwdActivity.this,e.getMessage());

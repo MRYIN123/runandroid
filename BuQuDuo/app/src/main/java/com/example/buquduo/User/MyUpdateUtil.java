@@ -4,6 +4,8 @@ import android.nfc.Tag;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.buquduo.Network.BQDHttpTool;
+import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.vector.update_app.HttpManager;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -12,6 +14,7 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -24,12 +27,8 @@ public class MyUpdateUtil implements HttpManager {
 
     @Override
     public void asyncGet(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
-        OkHttpUtils.get().url(url).build().execute(new com.zhy.http.okhttp.callback.Callback() {
-            @Override
-            public Object parseNetworkResponse(Response response, int id) throws Exception {
-                return null;
-            }
 
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.onError(e.getMessage());
@@ -40,16 +39,13 @@ public class MyUpdateUtil implements HttpManager {
                 callBack.onResponse(response.toString());
             }
         });
+
     }
 
     @Override
     public void asyncPost(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
-        OkHttpUtils.post().url(url).build().execute(new com.zhy.http.okhttp.callback.Callback() {
-            @Override
-            public Object parseNetworkResponse(Response response, int id) throws Exception {
-                return null;
-            }
-
+        HashMap hashMap = (HashMap)params;
+        BQDHttpTool.getShareInstance().post(url, hashMap, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.onError(e.getMessage());

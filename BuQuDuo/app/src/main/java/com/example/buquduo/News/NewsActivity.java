@@ -11,10 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Common.WebNewActivity;
 import com.example.buquduo.Home.BannerItem;
 import com.example.buquduo.Network.AHttpUtils;
+import com.example.buquduo.Network.BQDHttpTool;
 import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.TheCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
@@ -182,8 +184,8 @@ public class NewsActivity extends Fragment {
     }
 
     public void getCategory() {
-        String url = getResources().getString(R.string.url_base) + "api/news/category";
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/news/category";
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
 
@@ -212,13 +214,13 @@ public class NewsActivity extends Fragment {
 //        datalist.add(new NewsItem("这是我的数据4","这是我的数据详情3","https://www.jianshu.com/p/deb1c62bce5f",
 //                "https://www.blocknew.net/img/portfolio/thumbnails/2.jpg","1","2019-11-29","100"));
 
-        String url = getResources().getString(R.string.url_base) + "api/news" + "?page=" + offset + "&category=" + category;
+        String url = "api/news" + "?page=" + offset + "&category=" + category;
 
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Log.d("news打印","new错误");
-                makeToast(e.getMessage());
+                MyTool.makeToast(NewsActivity.this.getActivity(),e.getMessage());
             }
 
             @Override
@@ -244,17 +246,6 @@ public class NewsActivity extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-    }
-
-    public void makeToast(final String toastStr){
-
-        this.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(),toastStr.toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
 

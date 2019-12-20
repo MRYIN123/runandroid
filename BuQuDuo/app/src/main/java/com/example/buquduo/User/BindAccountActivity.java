@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Base.ResReturnItem;
 import com.example.buquduo.Login.Customer;
+import com.example.buquduo.Network.BQDHttpTool;
 import com.example.buquduo.Network.MyBaseCallBack;
 import com.example.buquduo.Network.WBHttpUtils;
 import com.example.buquduo.R;
@@ -171,8 +172,8 @@ public class BindAccountActivity extends AppCompatActivity {
 
 
         //验证码发送
-        String url = getResources().getString(R.string.url_base) + "api/SendMessage/" + phoneTxt.getText();
-        OkHttpUtils.get().url(url).build().execute(new MyBaseCallBack() {
+        String url =  "api/SendMessage/" + phoneTxt.getText();
+        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(BindAccountActivity.this,e.getMessage());
@@ -229,7 +230,7 @@ public class BindAccountActivity extends AppCompatActivity {
             return;
         }
 
-        String url = getResources().getString(R.string.url_base) + "api/user/bookbindingPhone";
+        String url =  "api/user/bookbindingPhone";
         HashMap<String,String> params = new HashMap<String, String>();
         params.put("phone",phoneTxt.getText().toString());
         params.put("code",codeTxt.getText().toString());
@@ -257,7 +258,7 @@ public class BindAccountActivity extends AppCompatActivity {
 
 
     public void bindWx() {
-        String url = getResources().getString(R.string.url_base) + "api/user/bookbindingWechat";
+        String url =  "api/user/bookbindingWechat";
         HashMap<String,String>hashMap = new HashMap<String, String>();
         String code = "微信登录返回的code";
         hashMap.put("code",code);
