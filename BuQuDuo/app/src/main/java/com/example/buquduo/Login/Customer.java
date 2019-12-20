@@ -35,13 +35,25 @@ public class Customer extends BaseItem {
     private float bml;
 
 
+    private String nickname;
+    private String headimgurl;
 
 
+    public void setHeadimgurl(String headimgurl) {
+        this.headimgurl = headimgurl;
+    }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
+    public String getHeadimgurl() {
+        return headimgurl;
+    }
 
-
-
+    public String getNickname() {
+        return nickname;
+    }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;

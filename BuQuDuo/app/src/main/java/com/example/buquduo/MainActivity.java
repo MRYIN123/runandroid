@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +18,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.buquduo.Base.MyTool;
 import com.example.buquduo.Common.CustomViewPager;
 import com.example.buquduo.Common.ViewPagerFragmentAdapter;
 import com.example.buquduo.Home.HomeActivity;
+import com.example.buquduo.Login.Customer;
 import com.example.buquduo.News.NewsActivity;
 import com.example.buquduo.User.UserActivity;
 import com.example.buquduo.ZhuanZhuan.ZhuanActivity;
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView fourImg;
 
     private int selectIndex = 0;
+    private String APP_ID = "";
+    IWXAPI api;
 
 
     @Override
@@ -83,6 +94,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initViewPager();
 
+        regToWx();
+
+    }
+
+    private void regToWx() {
+        api = WXAPIFactory.createWXAPI(this, APP_ID, false);
+        api.registerApp(APP_ID);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String responseInfo = sp.getString("responseInfo", "");
+
+        if (!responseInfo.isEmpty()) {
+            try {
+                Gson gson = new Gson();
+                Customer customer = gson.fromJson(responseInfo,Customer.class);
+                //得到头像和名字
+
+
+            } catch (JsonIOException e) {
+                e.printStackTrace();
+            }
+//            tv.setText("昵称：" + nickname + "\n" + "头像：" + headimgurl);
+            SharedPreferences.Editor editor = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
+            editor.clear();
+            editor.commit();
+        }
+    }
+
+
+    //微信登录
+    public void gotoWx() {
+        if (!api.isWXAppInstalled()) {
+            MyTool.makeToast(MainActivity.this,"您的设备未安装微信客户端");
+
+        } else {
+            final SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test";
+            api.sendReq(req);
+        }
     }
 
     public void initFragmentList() {
