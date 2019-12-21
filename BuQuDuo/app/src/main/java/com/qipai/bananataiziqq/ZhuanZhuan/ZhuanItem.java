@@ -1,6 +1,7 @@
 package com.qipai.bananataiziqq.ZhuanZhuan;
 
 import com.qipai.bananataiziqq.Base.BaseItem;
+import com.qipai.bananataiziqq.R;
 
 
 //public enum  ZhuanItemMenu {
@@ -10,80 +11,108 @@ import com.qipai.bananataiziqq.Base.BaseItem;
 
 public class ZhuanItem extends BaseItem {
 
-    public String type;
-    public String logo;
+    public int event;
+    public String image_url;
     public String title;
-    public String content;
-    public String gold;
-    public Boolean finish;
-    public int hasfinish;
+    public String context;
+    public String amount;
 
-    ZhuanItem(String title,String content,String logo,String type,String gold,Boolean finish,int hasfinish){
+    /***可完成次数: 0代表可无限完成 没有限制*/
+    public int frequency;
+    /**完成次数*/
+    public int completed;
+
+
+
+
+    ZhuanItem(String title,String context,String image_url,int event,String amount,int frequency,int completed){
         this.title = title;
-        this.content = content;
-        this.logo = logo;
-        this.type = type;
-        this.gold = gold;
-        this.finish = finish;
-        this.hasfinish = hasfinish;
+        this.context = context;
+        this.image_url = image_url;
+        this.event = event;
+        this.amount = amount;
+        this.frequency = frequency;
+        this.completed = completed;
 
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public void setGold(String gold) {
-        this.gold = gold;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
-    public void setFinish(Boolean finish) {
-        this.finish = finish;
+    public void setEvent(int event) {
+        this.event = event;
     }
 
-    public void setHasfinish(int hasfinish) {
-        this.hasfinish = hasfinish;
+    public void setContext(String context) {
+        this.context = context;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setCompleted(int completed) {
+        this.completed = completed;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public int getEvent() {
+        return event;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public int getCompleted() {
+        return completed;
+    }
+
+    public String getContext() {
+        return context;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public String getGold() {
-        return gold;
-    }
-
-    public Boolean getFinish() {
-        return finish;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public int getHasfinish() {
-        return hasfinish;
-    }
 
-    public String getType() {
-        return type;
-    }
+    public Boolean isFinish() {
+        /**
+         *  **可完成次数: 0代表可无限完成 没有限制frequency;
+         *  *完成次数 completed;
+         * */
+        if (getFrequency() == 0) {
+            if (getCompleted() > getFrequency()){
+                return true;
+            }else {
+                return false;
+            }
 
+        }else {
+            if (getCompleted() > getFrequency()){
+                return true;
+            }else {
+                return false;
+            }
+
+        }
+    }
 
 }

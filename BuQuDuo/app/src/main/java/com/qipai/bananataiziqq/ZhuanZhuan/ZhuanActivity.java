@@ -111,7 +111,7 @@ public class ZhuanActivity extends Fragment {
     }
 
     private void getTaskList(){
-        String url =  "api/task";
+        String url =  "api/user/task";
         BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {

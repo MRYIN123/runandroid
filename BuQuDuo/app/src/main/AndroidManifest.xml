@@ -25,7 +25,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wxapi.WXEntryActivity"></activity>
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:label="WXEntryActivity"
+            android:exported="true">
+        </activity>
         <activity android:name=".Login.LoginFirstActivity" />
         <activity android:name=".User.BindBankActivity" />
         <activity android:name=".User.SetPayPwdActivity" />

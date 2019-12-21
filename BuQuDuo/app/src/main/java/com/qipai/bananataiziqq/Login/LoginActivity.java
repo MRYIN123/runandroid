@@ -17,6 +17,8 @@ import com.qipai.bananataiziqq.bar.OnTitleBarListener;
 import com.qipai.bananataiziqq.bar.TitleBar;
 import com.google.gson.Gson;
 
+import java.util.HashMap;
+
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.Call;
 
@@ -131,8 +133,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        String url = "api/user/login" + phoneTxt.getText();
-        BQDHttpTool.getShareInstance().get(url, new MyBaseCallBack() {
+        HashMap hashMap = new HashMap();
+        hashMap.put("phone",Integer.valueOf(phoneTxt.getText().toString()).intValue());
+        hashMap.put("code",Integer.valueOf(codeTxt.getText().toString()).intValue());
+
+        String url = "api/user/login";
+        BQDHttpTool.getShareInstance().post(url,hashMap, new MyBaseCallBack() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 MyTool.makeToast(LoginActivity.this,e.getMessage());

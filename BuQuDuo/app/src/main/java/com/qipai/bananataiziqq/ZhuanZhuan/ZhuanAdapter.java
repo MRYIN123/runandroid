@@ -52,19 +52,24 @@ public class ZhuanAdapter extends ArrayAdapter {
         }
 
         viewHolder.titleTxt.setText(zhuanItem.getTitle());
-        viewHolder.contentTxt.setText(zhuanItem.getContent());
-        viewHolder.coinTxt.setText( "+" + zhuanItem.getGold());
-        viewHolder.titledestxt.setText(String.valueOf(zhuanItem.getHasfinish()));
+        viewHolder.contentTxt.setText(zhuanItem.getContext());
+        viewHolder.coinTxt.setText( "+" + zhuanItem.getAmount());
+//        viewHolder.titledestxt.setText(String.valueOf(zhuanItem.getCompleted()));
 
-        if (zhuanItem.getFinish() == true){
-            viewHolder.button.setText("立即领取");
-            viewHolder.button.setBackgroundResource(R.mipmap.cangebtn);
+        /**
+         *  **可完成次数: 0代表可无限完成 没有限制frequency;
+         *  *完成次数 completed;
+         * */
+        if (zhuanItem.isFinish()) {
+                viewHolder.button.setText("立即领取");
+                viewHolder.button.setBackgroundResource(R.mipmap.cangebtn);
         }else {
-            viewHolder.button.setText("去完成");
-            viewHolder.button.setBackgroundResource(R.mipmap.unfinishbtn);
+                viewHolder.button.setText("去完成");
+                viewHolder.button.setBackgroundResource(R.mipmap.unfinishbtn);
         }
 
-        Glide.with(this.getContext()).load(zhuanItem.getLogo()).placeholder(R.drawable.headimg).into(viewHolder.thumb);
+
+        Glide.with(this.getContext()).load(zhuanItem.getImage_url()).placeholder(R.drawable.headimg).into(viewHolder.thumb);
 
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,15 +82,15 @@ public class ZhuanAdapter extends ArrayAdapter {
     }
 
     public void touchZhuanBtn(ZhuanItem item) {
-        if (item.type == "run") {
-            Intent intent = new Intent();
-            intent.setClass(this.getContext(),RunHistoryActivity.class);
-            this.getContext().startActivity(intent);
-
-        }else if (item.type == "vedio"){
-            Toast.makeText(this.getContext(),"看视频啊",Toast.LENGTH_SHORT).show();
-
-        }
+//        if (item.type == "run") {
+//            Intent intent = new Intent();
+//            intent.setClass(this.getContext(),RunHistoryActivity.class);
+//            this.getContext().startActivity(intent);
+//
+//        }else if (item.type == "vedio"){
+//            Toast.makeText(this.getContext(),"看视频啊",Toast.LENGTH_SHORT).show();
+//
+//        }
 
         Toast.makeText(this.getContext(),item.getTitle(),Toast.LENGTH_SHORT).show();
     }
