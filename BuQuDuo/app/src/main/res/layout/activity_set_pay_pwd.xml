@@ -8,7 +8,7 @@
     tools:context=".User.SetPayPwdActivity">
 
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/titlebar_setpaypwd"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -19,7 +19,7 @@
         android:background="@color/colorffffff"
         app:titleSize="18dp"
         app:title="支付密码">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
 
     <EditText

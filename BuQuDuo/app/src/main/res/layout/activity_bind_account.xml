@@ -9,7 +9,7 @@
 
 
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/bindTitleBar"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -19,7 +19,7 @@
         app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:title="绑定账户">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
 
     <TextView
@@ -61,7 +61,7 @@
         android:orientation="vertical">
 
     <EditText
-        android:id="@+id/login_phonetxt"
+        android:id="@+id/bind_phonetxt"
         android:layout_width="match_parent"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
@@ -82,7 +82,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/login_codetxt"
+            android:id="@+id/bind_codetxt"
             android:layout_width="100dp"
             android:textColor="@color/color000000"
             android:textSize="15sp"

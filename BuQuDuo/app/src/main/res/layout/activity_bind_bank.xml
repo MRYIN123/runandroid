@@ -8,7 +8,7 @@
     tools:context=".User.BindBankActivity">
 
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/titlebar_bank"
         android:layout_width="match_parent"
         android:layout_height="64sp"
@@ -18,7 +18,7 @@
         android:background="@color/colorffffff"
         app:leftIcon="@drawable/back_icon"
         app:title="绑定银行卡"
-        app:titleSize="18dp"></com.example.buquduo.bar.TitleBar>
+        app:titleSize="18dp"></com.qipai.bananataiziqq.bar.TitleBar>
 
 
     <LinearLayout

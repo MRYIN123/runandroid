@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
 
-        <com.example.buquduo.bar.TitleBar
+        <com.qipai.bananataiziqq.bar.TitleBar
             android:id="@+id/newstitlebar"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="0dp"
@@ -16,7 +16,7 @@
             android:background="@color/colorffffff"
             app:titleSize="18dp"
             app:title="新闻">
-        </com.example.buquduo.bar.TitleBar>
+        </com.qipai.bananataiziqq.bar.TitleBar>
 
 
     <com.gxz.PagerSlidingTabStrip

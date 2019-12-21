@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/historytitlebar"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -15,7 +15,7 @@
         android:background="@color/colorffffff"
         app:titleSize="18dp"
         app:title="我的记录">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
     <ListView
         android:id="@+id/historylist"

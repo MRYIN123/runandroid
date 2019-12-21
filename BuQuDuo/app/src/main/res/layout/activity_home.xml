@@ -83,7 +83,7 @@
 
     </ScrollView>
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/hometitlebar"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -95,6 +95,6 @@
         android:background="@android:color/transparent"
         app:title="主页"
         app:titleColor="@color/colorffffff">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
 </RelativeLayout>

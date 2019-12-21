@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/logintitlebar"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -15,7 +15,7 @@
         app:title="登录"
         app:titleSize="18sp"
         app:titleColor="@color/color000000">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/webtitlebar"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -15,7 +15,7 @@
         app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:title="网页">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
     <WebView
         android:id="@+id/newsweb"

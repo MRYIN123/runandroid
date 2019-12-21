@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/titlebar_gorldrecord"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -26,7 +26,7 @@
         app:title="我的钱包"
         app:rightTitle="提现记录"
         app:rightColor="@color/colorffffff">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
 
 

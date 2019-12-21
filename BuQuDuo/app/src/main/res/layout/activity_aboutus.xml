@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".User.AboutusActivity">
 
-    <com.example.buquduo.bar.TitleBar
+    <com.qipai.bananataiziqq.bar.TitleBar
         android:id="@+id/titlebar_aboutus"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
@@ -17,7 +17,7 @@
         android:background="@color/colorffffff"
         app:titleSize="18dp"
         app:title="关于我们">
-    </com.example.buquduo.bar.TitleBar>
+    </com.qipai.bananataiziqq.bar.TitleBar>
 
 
     <ImageView
