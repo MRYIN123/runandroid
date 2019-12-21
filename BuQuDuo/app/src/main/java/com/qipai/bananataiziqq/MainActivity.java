@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView fourImg;
 
     private int selectIndex = 0;
-    private String APP_ID = "";
-    IWXAPI api;
+
 
 
     @Override
@@ -89,15 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initViewPager();
 
-        regToWx();
 
     }
 
-    private void regToWx() {
-        api = WXAPIFactory.createWXAPI(this, APP_ID, false);
-        api.registerApp(APP_ID);
 
-    }
 
     @Override
     protected void onResume() {
@@ -124,18 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    //微信登录
-    public void gotoWx() {
-        if (!api.isWXAppInstalled()) {
-            MyTool.makeToast(MainActivity.this,"您的设备未安装微信客户端");
 
-        } else {
-            final SendAuth.Req req = new SendAuth.Req();
-            req.scope = "snsapi_userinfo";
-            req.state = "wechat_sdk_demo_test";
-            api.sendReq(req);
-        }
-    }
 
     public void initFragmentList() {
         mFragmentList.add(new HomeActivity());

@@ -16,11 +16,16 @@ import android.widget.Toast;
 
 import com.qipai.bananataiziqq.Base.MyTool;
 import com.qipai.bananataiziqq.Login.Customer;
+import com.qipai.bananataiziqq.Login.LoginFirstActivity;
+import com.qipai.bananataiziqq.Login.MyDefaultItem;
 import com.qipai.bananataiziqq.Network.BQDHttpTool;
 import com.qipai.bananataiziqq.Network.MyBaseCallBack;
 import com.qipai.bananataiziqq.R;
 import com.qipai.bananataiziqq.bar.OnTitleBarListener;
 import com.qipai.bananataiziqq.bar.TitleBar;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 
@@ -38,6 +43,8 @@ public class BindAccountActivity extends AppCompatActivity {
     TitleBar titleBar;
     HasBindType hasBindType = HasBindType.All;
     CountDownTimer timer;
+    private static IWXAPI WXapi;
+    private String WX_APP_ID = "wxb52a6345ac6991f8";
 
 
     @Override
@@ -52,6 +59,13 @@ public class BindAccountActivity extends AppCompatActivity {
         setupTitleBar();
 
         updateUI();
+
+        registWx();
+    }
+
+    public void registWx() {
+        WXapi = WXAPIFactory.createWXAPI(this, WX_APP_ID, true);
+        WXapi.registerApp(WX_APP_ID);
     }
 
     public void setupTitleBar() {
@@ -250,25 +264,27 @@ public class BindAccountActivity extends AppCompatActivity {
 
 
     public void bindWx() {
-        String url =  "api/user/bookbindingWechat";
-        HashMap<String,String>hashMap = new HashMap<String, String>();
-        String code = "微信登录返回的code";
-        hashMap.put("code",code);
 
-        OkHttpUtils.post().url(url)
-                .addParams("code",code)
-                .build().execute(new MyBaseCallBack() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                MyTool.makeToast(BindAccountActivity.this,e.getMessage());
-            }
+        MyDefaultItem item = new MyDefaultItem();
+        item.setBindflag("1");
 
-            @Override
-            public void onResponse(Object response, int id) {
-                finishActivity();
-            }
-        });
+        MyDefaultItem.saveMyDefaultItem(this,item);
 
+        gotoWx();
+
+    }
+
+    //微信登录
+    public void gotoWx() {
+        if (!WXapi.isWXAppInstalled()) {
+            MyTool.makeToast(BindAccountActivity.this,"您的设备未安装微信客户端");
+
+        } else {
+            final SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test";
+            WXapi.sendReq(req);
+        }
     }
 
 

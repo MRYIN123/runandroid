@@ -14,6 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="64sp"
+        app:titleSize="16sp"
+        app:lineVisible="false"
         app:leftIcon="@drawable/back_icon"
         android:background="@color/colorffffff"
         app:title="账号登录">
@@ -25,9 +27,9 @@
         android:id="@+id/wxloginbtn"
         android:layout_marginTop="120dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:text="微信登录"
         android:textColor="@color/colorffffff"
         android:background="@drawable/shape"
@@ -37,14 +39,14 @@
 
     <Button
         android:id="@+id/phoneloginbtn"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_height="40dp"
-        android:text="手机哈"
-        android:textColor="@color/colorffffff"
-        android:background="@drawable/shape"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="46dp"
+        android:text="手机登录"
+        android:textColor="@color/color333333"
+        android:background="@drawable/btnlayer_gray"
         android:textSize="16sp">
     </Button>
 

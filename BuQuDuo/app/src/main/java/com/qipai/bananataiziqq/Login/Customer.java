@@ -39,6 +39,7 @@ public class Customer extends BaseItem {
     private String headimgurl;
 
 
+
     public void setHeadimgurl(String headimgurl) {
         this.headimgurl = headimgurl;
     }
@@ -191,6 +192,8 @@ public class Customer extends BaseItem {
     public float getBml() {
         return bml;
     }
+
+
 
 
 

@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.qipai.bananataiziqq.Base.MyTool;
+import com.qipai.bananataiziqq.MainActivity;
 import com.qipai.bananataiziqq.R;
 import com.qipai.bananataiziqq.bar.OnTitleBarListener;
 import com.qipai.bananataiziqq.bar.TitleBar;
@@ -38,6 +39,8 @@ public class LoginFirstActivity extends AppCompatActivity  {
         initview();
 
         setmyTitleBar();
+
+        registWx();
 
         // 隐藏状态栏
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -107,32 +110,37 @@ public class LoginFirstActivity extends AppCompatActivity  {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(LoginFirstActivity.this,LoginActivity.class);
-                startActivity(intent);
+                wxLogin();
             }
         });
 
         phoneloginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wxLogin();
+                Intent intent = new Intent();
+                intent.setClass(LoginFirstActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
 
 
     }
 
-    public void wxLogin() {
-        MyTool.makeToast(this,"微信登录");
-
+    public void registWx() {
         WXapi = WXAPIFactory.createWXAPI(this, WX_APP_ID, true);
         WXapi.registerApp(WX_APP_ID);
-        SendAuth.Req req = new SendAuth.Req();
-        req.scope = "snsapi_userinfo";
-        req.state = "wechat_sdk_demo";
-        WXapi.sendReq(req);
+    }
 
+    public void wxLogin() {
+        if (!WXapi.isWXAppInstalled()) {
+            MyTool.makeToast(LoginFirstActivity.this,"您的设备未安装微信客户端");
+
+        } else {
+            final SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test";
+            WXapi.sendReq(req);
+        }
     }
 
 
